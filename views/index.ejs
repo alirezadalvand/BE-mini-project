@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>todo app</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="text center">
+                    <a href="/" class="nav-brand ext-dark">User managment system</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+  <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/add-user" class="border-shadow">
+                    <span class="text-gradient">new user <i class="fas fa-user"></i> </span>
+                </a>
+            </div>
+            <form action="/" method="POST">
+                <table class="table">
+                     <thead class="thead-dark">
+                         <tr class="tr">
+                             <th>ID</th>
+                             <th>name</th>
+                             <th>@Email</th>
+                             <th>gender</th>
+                             <th>status</th>
+                             <th>action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <%for(let i=0; i<users.length; i++) { %>
+                        <tr>
+                            <td><%=i+1 %></td>
+                            <td><%= users[i].name %></td>
+                            <td><%= users[i].email %></td>
+                            <td><%= users[i].gender %></td>
+                            <td><%= users[i].status %></td>
+                            <td>
+                                <a href="/update-user?id=<%= users[i]._id %>" class="btn border-shadow update">
+                                <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+
+                                </a>
+                                <a href="#" class="btn border-shadow delete" data-id=<%= users[i]._id %>>
+                                <span class="text-gradient"><i class="fas fa-times"></i></span>
+
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                     </tbody>
+                </table>
+            </form>
+        </div>
+    </main
+</body>
+</html>
