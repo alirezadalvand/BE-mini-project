@@ -1,7 +1,7 @@
 const User = require("../model/model");
 
 //* create new user
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   //* validate req
   if (!req.body) {
     res.status(400).send({ message: "contant can't be empty" });
@@ -17,19 +17,15 @@ exports.create = (req, res) => {
   });
 
   //* save in db
-  user
-    .save(user)
-    .then((data) => {
-        // res.send(data);
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.status(500).send({
-        massage:
-          err.massage ||
-          "some error occurred whilw creating a create operation",
-      });
+  try {
+    await user.save();
+    res.status(201).send({ massage: "user create successfully" });
+  } catch (err) {
+    res.status(500).send({
+      massage:
+        err.massage || "some error occurred whilw creating a create operation",
     });
+  }
 };
 
 //* return all or single user
